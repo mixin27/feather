@@ -18,5 +18,5 @@ android/.gradle
 *.lock
 *.lock
 
-# .flutter-plugins
-# .flutter-plugins-dependencies
+.flutter-plugins
+.flutter-plugins-dependencies
