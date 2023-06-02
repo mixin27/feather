@@ -1,6 +1,5 @@
 import 'package:feather/src/data/model/internal/overflow_menu_element.dart';
 import 'package:feather/src/data/model/internal/unit.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:feather/src/ui/app/app_bloc.dart';
 import 'package:feather/src/ui/app/app_event.dart';
 import 'package:feather/src/ui/settings/bloc/settings_screen_bloc.dart';
@@ -10,8 +9,8 @@ import 'package:feather/src/ui/widget/animated_gradient.dart';
 import 'package:feather/src/ui/widget/loading_widget.dart';
 import 'package:feather/src/ui/widget/transparent_app_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 class SettingsScreen extends StatefulWidget {
@@ -21,7 +20,7 @@ class SettingsScreen extends StatefulWidget {
       : super(key: key);
 
   @override
-  _SettingsScreenState createState() {
+  State<SettingsScreen> createState() {
     return _SettingsScreenState();
   }
 }
@@ -88,56 +87,67 @@ class _SettingsScreenState extends State<SettingsScreen> {
         children: [
           const SizedBox(height: 80),
           _buildUnitsChangeWidget(
-              applicationLocalization, state.unit == Unit.imperial),
+            applicationLocalization,
+            state.unit == Unit.imperial,
+          ),
           Text(
             applicationLocalization.units_description,
-            style: Theme.of(context).textTheme.bodyText1,
+            style: Theme.of(context).textTheme.bodyLarge,
           ),
           const SizedBox(height: 30),
           _buildRefreshTimePickerWidget(
-              applicationLocalization, state.refreshTime),
+            applicationLocalization,
+            state.refreshTime,
+          ),
           const SizedBox(height: 10),
           Text(
             applicationLocalization.refresh_time_description,
-            style: Theme.of(context).textTheme.bodyText1,
+            style: Theme.of(context).textTheme.bodyLarge,
           ),
           const SizedBox(height: 30),
-          Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-            Text(
-              "${applicationLocalization.last_refresh_time}:",
-              style: Theme.of(context).textTheme.subtitle2,
-            ),
-          ]),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "${applicationLocalization.last_refresh_time}:",
+                style: Theme.of(context).textTheme.titleSmall,
+              ),
+            ],
+          ),
           const SizedBox(height: 10),
           Text(
-              "$dateTime (${timeago.format(dateTime, locale: Localizations.localeOf(context).languageCode)})",
-              key: const Key("settings_screen_last_refresh_time"),
-              style: Theme.of(context).textTheme.bodyText1),
+            "$dateTime (${timeago.format(dateTime, locale: Localizations.localeOf(context).languageCode)})",
+            key: const Key("settings_screen_last_refresh_time"),
+            style: Theme.of(context).textTheme.bodyLarge,
+          ),
         ],
       ),
     );
   }
 
   Widget _buildUnitsChangeWidget(
-      AppLocalizations applicationLocalization, bool unitImperial) {
+    AppLocalizations applicationLocalization,
+    bool unitImperial,
+  ) {
     return Row(
       key: const Key("settings_screen_units_picker"),
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
           "${applicationLocalization.units}:",
-          style: Theme.of(context).textTheme.subtitle2,
+          style: Theme.of(context).textTheme.titleSmall,
         ),
         Row(
           children: [
             Text(applicationLocalization.metric),
             Switch(
-                value: unitImperial,
-                activeColor: Colors.grey,
-                activeTrackColor: Colors.white,
-                inactiveTrackColor: Colors.white,
-                inactiveThumbColor: Colors.grey,
-                onChanged: onChangedUnitState),
+              value: unitImperial,
+              activeColor: Colors.grey,
+              activeTrackColor: Colors.white,
+              inactiveTrackColor: Colors.white,
+              inactiveThumbColor: Colors.grey,
+              onChanged: onChangedUnitState,
+            ),
             Text(applicationLocalization.imperial),
             const SizedBox(height: 10),
           ],
@@ -147,14 +157,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
   }
 
   Widget _buildRefreshTimePickerWidget(
-      AppLocalizations applicationLocalization, int refreshTime) {
+    AppLocalizations applicationLocalization,
+    int refreshTime,
+  ) {
     return Row(
       key: const Key("settings_screen_refresh_timer"),
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
           "${applicationLocalization.refresh_time}:",
-          style: Theme.of(context).textTheme.subtitle2,
+          style: Theme.of(context).textTheme.titleSmall,
         ),
         Center(
           child: Row(
@@ -197,22 +209,30 @@ class _SettingsScreenState extends State<SettingsScreen> {
   List<PopupMenuElement> _getRefreshTimeMenu(BuildContext context) {
     final applicationLocalization = AppLocalizations.of(context)!;
     final List<PopupMenuElement> menuList = [];
-    menuList.add(PopupMenuElement(
-      key: const Key("menu_settings_refresh_time_10_minutes"),
-      title: "10 ${applicationLocalization.minutes}",
-    ));
-    menuList.add(PopupMenuElement(
-      key: const Key("menu_settings_refresh_time_15_minutes"),
-      title: "15 ${applicationLocalization.minutes}",
-    ));
-    menuList.add(PopupMenuElement(
-      key: const Key("menu_settings_refresh_time_30_minutes"),
-      title: "30 ${applicationLocalization.minutes}",
-    ));
-    menuList.add(PopupMenuElement(
-      key: const Key("menu_settings_refresh_time_60_minutes"),
-      title: "60 ${applicationLocalization.minutes}",
-    ));
+    menuList.add(
+      PopupMenuElement(
+        key: const Key("menu_settings_refresh_time_10_minutes"),
+        title: "10 ${applicationLocalization.minutes}",
+      ),
+    );
+    menuList.add(
+      PopupMenuElement(
+        key: const Key("menu_settings_refresh_time_15_minutes"),
+        title: "15 ${applicationLocalization.minutes}",
+      ),
+    );
+    menuList.add(
+      PopupMenuElement(
+        key: const Key("menu_settings_refresh_time_30_minutes"),
+        title: "30 ${applicationLocalization.minutes}",
+      ),
+    );
+    menuList.add(
+      PopupMenuElement(
+        key: const Key("menu_settings_refresh_time_60_minutes"),
+        title: "60 ${applicationLocalization.minutes}",
+      ),
+    );
 
     return menuList;
   }

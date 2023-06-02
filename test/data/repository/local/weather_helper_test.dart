@@ -11,11 +11,11 @@ void main() {
     expect(WeatherHelper.getWeatherIcon(250), "assets/icon_thunder.png");
     expect(WeatherHelper.getWeatherIcon(299), "assets/icon_thunder.png");
     expect(
-        WeatherHelper.getWeatherIcon(300), "assets/icon_cloud_little_rain.png");
+        WeatherHelper.getWeatherIcon(300), "assets/icon_cloud_little_rain.png",);
     expect(
-        WeatherHelper.getWeatherIcon(350), "assets/icon_cloud_little_rain.png");
+        WeatherHelper.getWeatherIcon(350), "assets/icon_cloud_little_rain.png",);
     expect(
-        WeatherHelper.getWeatherIcon(399), "assets/icon_cloud_little_rain.png");
+        WeatherHelper.getWeatherIcon(399), "assets/icon_cloud_little_rain.png",);
     expect(WeatherHelper.getWeatherIcon(500), "assets/icon_rain.png");
     expect(WeatherHelper.getWeatherIcon(550), "assets/icon_rain.png");
     expect(WeatherHelper.getWeatherIcon(599), "assets/icon_rain.png");
@@ -32,13 +32,13 @@ void main() {
   test("Should map forecasts for same day", () {
     final List<WeatherForecastResponse> list = [];
     list.add(WeatherForecastResponse(
-        null, null, null, null, DateTime.now(), null, null));
+        null, null, null, null, DateTime.now(), null, null,),);
     list.add(WeatherForecastResponse(
-        null, null, null, null, DateTime.now(), null, null));
+        null, null, null, null, DateTime.now(), null, null,),);
     list.add(WeatherForecastResponse(
-        null, null, null, null, DateTime.now(), null, null));
+        null, null, null, null, DateTime.now(), null, null,),);
     list.add(WeatherForecastResponse(null, null, null, null,
-        DateTime.parse("1969-07-20 20:18:04Z"), null, null));
+        DateTime.parse("1969-07-20 20:18:04Z"), null, null,),);
 
     final map = WeatherHelper.getMapForecastsForSameDay(list);
     expect(map.length, 2);
@@ -52,14 +52,14 @@ void main() {
     expect(WeatherHelper.formatTemperature(temperature: 5.531), "5 °C");
     expect(
         WeatherHelper.formatTemperature(
-            temperature: -5.531, positions: 1, round: false),
-        "-5.5 °C");
+            temperature: -5.531, positions: 1, round: false,),
+        "-5.5 °C",);
     expect(WeatherHelper.formatTemperature(temperature: -5.531, positions: 1),
-        "-6.0 °C");
+        "-6.0 °C",);
     expect(
         WeatherHelper.formatTemperature(
-            temperature: 5.555, positions: 2, round: false),
-        "5.55 °C");
+            temperature: 5.555, positions: 2, round: false,),
+        "5.55 °C",);
   });
 
   test("Convert celsius to fahrenheit returns valid values", () {
@@ -87,11 +87,11 @@ void main() {
   test("Convert meters per second to miles per hour returns valid values", () {
     expect(WeatherHelper.convertMetersPerSecondToMilesPerHour(0), 0);
     expect(WeatherHelper.convertMetersPerSecondToMilesPerHour(10).round(),
-        22.3694.round());
+        22.3694.round(),);
     expect(WeatherHelper.convertMetersPerSecondToMilesPerHour(50).round(),
-        111.847.round());
+        111.847.round(),);
     expect(WeatherHelper.convertMetersPerSecondToMilesPerHour(100).round(),
-        223.694.round());
+        223.694.round(),);
   });
 
   test("Format rain returns formatted value", () {
@@ -132,7 +132,7 @@ void main() {
     final sunrise = DateTime.now().add(const Duration(hours: 1));
     final sunset = DateTime.now().add(const Duration(hours: 8));
     final System system = System(
-        "", sunrise.millisecondsSinceEpoch, sunset.millisecondsSinceEpoch);
+        "", sunrise.millisecondsSinceEpoch, sunset.millisecondsSinceEpoch,);
     expect(WeatherHelper.getDayMode(system), -1);
   });
 
@@ -148,11 +148,11 @@ void main() {
         .millisecondsSinceEpoch;
     expect(
         WeatherHelper.getDayModeFromSunriseSunset(sunriseLowerThaNow, sunset),
-        0);
+        0,);
 
     expect(
         WeatherHelper.getDayModeFromSunriseSunset(
-            sunriseLowerThaNow, sunriseLowerThaNow),
-        1);
+            sunriseLowerThaNow, sunriseLowerThaNow,),
+        1,);
   });
 }

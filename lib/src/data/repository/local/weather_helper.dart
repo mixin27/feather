@@ -26,7 +26,7 @@ class WeatherHelper {
   }
 
   static Map<String, List<WeatherForecastResponse>> getMapForecastsForSameDay(
-      List<WeatherForecastResponse> forecastList) {
+      List<WeatherForecastResponse> forecastList,) {
     final Map<String, List<WeatherForecastResponse>> map = {};
     for (int i = 0; i < forecastList.length; i++) {
       final WeatherForecastResponse response = forecastList[i];
@@ -40,7 +40,7 @@ class WeatherHelper {
   }
 
   static String _getDayKey(DateTime dateTime) {
-    return "${dateTime.day.toString()}-${dateTime.month.toString()}-${dateTime.year.toString()}";
+    return "${dateTime.day}-${dateTime.month}-${dateTime.year}";
   }
 
   static String formatTemperature({

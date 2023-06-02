@@ -1,11 +1,10 @@
 import 'package:feather/src/data/model/internal/chart_data.dart';
 import 'package:feather/src/data/model/internal/weather_forecast_holder.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:feather/src/resources/config/assets.dart';
 import 'package:feather/src/data/repository/local/weather_helper.dart';
+import 'package:feather/src/resources/config/assets.dart';
 import 'package:feather/src/ui/forecast/widget/weather_forecast_base_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class WeatherForecastPressurePage extends WeatherForecastBasePage {
   const WeatherForecastPressurePage(
@@ -24,8 +23,8 @@ class WeatherForecastPressurePage extends WeatherForecastBasePage {
 
   @override
   Row getBottomRowWidget(BuildContext context) {
-    return Row(
-      key: const Key("weather_forecast_pressure_page_bottom_row"),
+    return const Row(
+      key: Key("weather_forecast_pressure_page_bottom_row"),
       mainAxisAlignment: MainAxisAlignment.center,
     );
   }
@@ -49,17 +48,17 @@ class WeatherForecastPressurePage extends WeatherForecastBasePage {
       textDirection: TextDirection.ltr,
       text: TextSpan(
         children: [
-          TextSpan(text: 'min ', style: Theme.of(context).textTheme.bodyText1),
+          TextSpan(text: 'min ', style: Theme.of(context).textTheme.bodyLarge),
           TextSpan(
               text: WeatherHelper.formatPressure(
-                  holder!.minPressure!, isMetricUnits),
-              style: Theme.of(context).textTheme.subtitle2),
+                  holder!.minPressure!, isMetricUnits,),
+              style: Theme.of(context).textTheme.titleSmall,),
           TextSpan(
-              text: '   max ', style: Theme.of(context).textTheme.bodyText1),
+              text: '   max ', style: Theme.of(context).textTheme.bodyLarge,),
           TextSpan(
               text: WeatherHelper.formatPressure(
-                  holder!.maxPressure!, isMetricUnits),
-              style: Theme.of(context).textTheme.subtitle2)
+                  holder!.maxPressure!, isMetricUnits,),
+              style: Theme.of(context).textTheme.titleSmall,)
         ],
       ),
     );

@@ -37,15 +37,15 @@ void main() {
     );
 
     expect(find.byKey(const Key("weather_current_widget_container")),
-        findsOneWidget);
+        findsOneWidget,);
     expect(find.byKey(const Key("weather_current_widget_temperature")),
-        findsOneWidget);
+        findsOneWidget,);
     expect(find.byKey(const Key("weather_current_widget_min_max_temperature")),
-        findsOneWidget);
+        findsOneWidget,);
     expect(find.byKey(const Key("weather_current_widget_pressure_humidity")),
-        findsOneWidget);
+        findsOneWidget,);
     expect(find.byKey(const Key("weather_current_widget_thumbnail_list")),
-        findsOneWidget);
+        findsOneWidget,);
   });
 }
 
@@ -64,7 +64,7 @@ WeatherResponse setupWeatherResponse() {
       mainWeatherData: mainWeatherData,
       overallWeatherData: list,
       name: "",
-      system: system);
+      system: system,);
   return weatherResponse;
 }
 

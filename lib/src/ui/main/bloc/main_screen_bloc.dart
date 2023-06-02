@@ -4,8 +4,8 @@ import 'package:feather/src/data/model/internal/application_error.dart';
 import 'package:feather/src/data/model/internal/geo_position.dart';
 import 'package:feather/src/data/model/remote/weather_forecast_list_response.dart';
 import 'package:feather/src/data/model/remote/weather_response.dart';
-import 'package:feather/src/data/repository/local/location_manager.dart';
 import 'package:feather/src/data/repository/local/application_local_repository.dart';
+import 'package:feather/src/data/repository/local/location_manager.dart';
 import 'package:feather/src/data/repository/local/weather_local_repository.dart';
 import 'package:feather/src/data/repository/remote/weather_remote_repository.dart';
 import 'package:feather/src/ui/main/bloc/main_screen_event.dart';
@@ -27,56 +27,67 @@ class MainScreenBloc extends Bloc<MainScreenEvent, MainScreenState> {
     this._weatherLocalRepository,
     this._weatherRemoteRepository,
     this._applicationLocalRepository,
-  ) : super(InitialMainScreenState());
+  ) : super(InitialMainScreenState()) {
+    on<LocationCheckMainScreenEvent>((event, emit) async {
+      emit(CheckingLocationMainScreenState());
 
-  @override
-  Stream<MainScreenState> mapEventToState(MainScreenEvent event) async* {
-    if (event is LocationCheckMainScreenEvent) {
-      yield CheckingLocationMainScreenState();
       if (!await _checkLocationServiceEnabled()) {
-        yield LocationServiceDisabledMainScreenState();
+        emit(LocationServiceDisabledMainScreenState());
       } else {
         final permissionState = await _checkPermission();
         if (permissionState == null) {
-          yield* _selectWeatherData();
+          await _selectWeatherData(emit);
         } else {
-          yield permissionState;
+          emit(permissionState);
         }
       }
-    }
-    if (event is LoadWeatherDataMainScreenEvent) {
-      yield* _selectWeatherData();
-    }
+    });
+    on<LoadWeatherDataMainScreenEvent>((event, emit) async {
+      await _selectWeatherData(emit);
+    });
   }
 
-  Stream<MainScreenState> _selectWeatherData() async* {
-    yield LoadingMainScreenState();
+  Future<void> _selectWeatherData(Emitter<MainScreenState> emit) async {
+    emit(LoadingMainScreenState());
 
     final GeoPosition? position = await _getPosition();
     Log.i("Got geo position: $position");
     if (position != null) {
       final WeatherResponse? weatherResponse =
           await _fetchWeather(position.lat, position.long);
+
       final WeatherForecastListResponse? weatherForecastListResponse =
           await _fetchWeatherForecast(position.lat, position.long);
+
       _saveLastRefreshTime();
+
       if (weatherResponse != null && weatherForecastListResponse != null) {
         if (weatherResponse.errorCode != null) {
-          yield FailedLoadMainScreenState(weatherResponse.errorCode!);
+          emit(FailedLoadMainScreenState(weatherResponse.errorCode!));
         } else if (weatherForecastListResponse.errorCode != null) {
-          yield FailedLoadMainScreenState(
-              weatherForecastListResponse.errorCode!);
+          emit(
+            FailedLoadMainScreenState(
+              weatherForecastListResponse.errorCode!,
+            ),
+          );
         } else {
-          yield SuccessLoadMainScreenState(
-              weatherResponse, weatherForecastListResponse);
+          emit(
+            SuccessLoadMainScreenState(
+              weatherResponse,
+              weatherForecastListResponse,
+            ),
+          );
           _setupRefreshTimer();
         }
       } else {
-        yield const FailedLoadMainScreenState(ApplicationError.connectionError);
+        emit(const FailedLoadMainScreenState(ApplicationError.connectionError));
       }
     } else {
-      yield const FailedLoadMainScreenState(
-          ApplicationError.locationNotSelectedError);
+      emit(
+        const FailedLoadMainScreenState(
+          ApplicationError.locationNotSelectedError,
+        ),
+      );
     }
   }
 
@@ -94,7 +105,8 @@ class MainScreenBloc extends Bloc<MainScreenEvent, MainScreenState> {
         return null;
       } else {
         return PermissionNotGrantedMainScreenState(
-            permissionRequest == LocationPermission.deniedForever);
+          permissionRequest == LocationPermission.deniedForever,
+        );
       }
     } else if (permissionCheck == LocationPermission.deniedForever) {
       return const PermissionNotGrantedMainScreenState(true);
@@ -122,7 +134,9 @@ class MainScreenBloc extends Bloc<MainScreenEvent, MainScreenState> {
   }
 
   Future<WeatherResponse?> _fetchWeather(
-      double? latitude, double? longitude) async {
+    double? latitude,
+    double? longitude,
+  ) async {
     Log.i("Fetch weather");
     final WeatherResponse weatherResponse =
         await _weatherRemoteRepository.fetchWeather(latitude, longitude);
@@ -156,12 +170,16 @@ class MainScreenBloc extends Bloc<MainScreenEvent, MainScreenState> {
   }
 
   Future<WeatherForecastListResponse?> _fetchWeatherForecast(
-      double? latitude, double? longitude) async {
+    double? latitude,
+    double? longitude,
+  ) async {
     //lastRequestTime = DateTime.now().millisecondsSinceEpoch;
 
     WeatherForecastListResponse weatherForecastResponse =
         await _weatherRemoteRepository.fetchWeatherForecast(
-            latitude, longitude);
+      latitude,
+      longitude,
+    );
     if (weatherForecastResponse.errorCode == null) {
       _weatherLocalRepository.saveWeatherForecast(weatherForecastResponse);
     } else {

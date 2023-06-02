@@ -8,36 +8,35 @@ class SettingsScreenBloc
   final ApplicationLocalRepository _applicationLocalRepository;
 
   SettingsScreenBloc(this._applicationLocalRepository)
-      : super(InitialSettingsScreenState());
-
-  @override
-  Stream<SettingsScreenState> mapEventToState(
-      SettingsScreenEvent event) async* {
-    if (event is LoadSettingsScreenEvent) {
+      : super(InitialSettingsScreenState()) {
+    on<LoadSettingsScreenEvent>((event, emit) async {
       final unit = await _applicationLocalRepository.getSavedUnit();
       final savedRefreshTime =
           await _applicationLocalRepository.getSavedRefreshTime();
       final lastRefreshedTime =
           await _applicationLocalRepository.getLastRefreshTime();
-      yield LoadedSettingsScreenState(
-          unit, savedRefreshTime, lastRefreshedTime);
-    }
-
-    if (event is ChangeUnitsSettingsScreenEvent) {
+      emit(
+        LoadedSettingsScreenState(
+          unit,
+          savedRefreshTime,
+          lastRefreshedTime,
+        ),
+      );
+    });
+    on<ChangeUnitsSettingsScreenEvent>((event, emit) {
       final unitsEvent = event;
       _applicationLocalRepository.saveUnit(unitsEvent.unit);
       if (state is LoadedSettingsScreenState) {
         final loadedState = state as LoadedSettingsScreenState;
-        yield loadedState.copyWith(unit: unitsEvent.unit);
+        emit(loadedState.copyWith(unit: unitsEvent.unit));
       }
-    }
-
-    if (event is ChangeRefreshTimeSettingsScreenEvent) {
+    });
+    on<ChangeRefreshTimeSettingsScreenEvent>((event, emit) {
       _applicationLocalRepository.saveRefreshTime(event.refreshTime);
       if (state is LoadedSettingsScreenState) {
         final loadedState = state as LoadedSettingsScreenState;
-        yield loadedState.copyWith(refreshTime: event.refreshTime);
+        emit(loadedState.copyWith(refreshTime: event.refreshTime));
       }
-    }
+    });
   }
 }

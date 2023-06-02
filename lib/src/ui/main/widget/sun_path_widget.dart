@@ -4,7 +4,6 @@ import 'package:feather/src/data/repository/local/weather_helper.dart';
 import 'package:feather/src/ui/widget/animated_state.dart';
 import 'package:feather/src/utils/date_time_helper.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class SunPathWidget extends StatefulWidget {
   final int? sunrise;
@@ -38,10 +37,6 @@ class _SunPathWidgetState extends AnimatedState<SunPathWidget> {
     );
   }
 
-  @override
-  void dispose() {
-    super.dispose();
-  }
 
   @override
   void onAnimatedValue(double value) {

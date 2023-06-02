@@ -1,9 +1,9 @@
 import 'package:feather/src/data/model/internal/forecast_navigation_params.dart';
 import 'package:feather/src/data/model/internal/settings_navigation_params.dart';
 import 'package:feather/src/data/model/internal/weather_forecast_holder.dart';
+import 'package:feather/src/ui/about/about_screen.dart';
 import 'package:feather/src/ui/forecast/weather_forecast_screen.dart';
 import 'package:feather/src/ui/main/main_screen.dart';
-import 'package:feather/src/ui/about/about_screen.dart';
 import 'package:feather/src/ui/settings/settings_screen.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +14,7 @@ class NavigationProvider {
   final _mainScreenHandler = Handler(
       handlerFunc: (BuildContext? context, Map<String, dynamic> params) {
     return const MainScreen();
-  });
+  },);
 
   final _forecastScreenHandler = Handler(
       handlerFunc: (BuildContext? context, Map<String, dynamic> params) {
@@ -29,7 +29,7 @@ class NavigationProvider {
     } else {
       throw ArgumentError("WeatherForecastHolder can't be null");
     }
-  });
+  },);
   final _aboutScreenHandler = Handler(
       handlerFunc: (BuildContext? context, Map<String, dynamic> params) {
     List<Color> startGradientColors = [];
@@ -41,7 +41,7 @@ class NavigationProvider {
     return AboutScreen(
       startGradientColors: startGradientColors,
     );
-  });
+  },);
 
   final _settingsScreenHandler = Handler(
       handlerFunc: (BuildContext? context, Map<String, dynamic> params) {
@@ -54,7 +54,7 @@ class NavigationProvider {
     return SettingsScreen(
       startGradientColors: startGradientColors,
     );
-  });
+  },);
 
   void defineRoutes() {
     router.define("/", handler: _mainScreenHandler);

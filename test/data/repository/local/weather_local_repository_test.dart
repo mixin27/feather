@@ -54,7 +54,7 @@ void main() {
 
     test("save weather saves weather data", () async {
       weatherLocalRepository.saveWeatherForecast(
-          WeatherUtils.getWeatherForecastListResponse(id: 1));
+          WeatherUtils.getWeatherForecastListResponse(id: 1),);
       final savedWeatherForecast =
           await weatherLocalRepository.getWeatherForecast();
       expect(savedWeatherForecast != null, true);

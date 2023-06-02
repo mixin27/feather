@@ -11,7 +11,7 @@ class WeatherRemoteRepository {
   }
 
   Future<WeatherForecastListResponse> fetchWeatherForecast(
-      double? latitude, double? longitude) {
+      double? latitude, double? longitude,) {
     return _weatherApiProvider.fetchWeatherForecast(latitude, longitude);
   }
 }

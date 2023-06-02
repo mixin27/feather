@@ -76,7 +76,7 @@ class FakeStorageManager extends StorageManager {
 
   @override
   Future<bool> saveWeatherForecast(
-      WeatherForecastListResponse weatherForecastListResponse) async {
+      WeatherForecastListResponse weatherForecastListResponse,) async {
     _weatherForecastListResponse = weatherForecastListResponse;
     return true;
   }

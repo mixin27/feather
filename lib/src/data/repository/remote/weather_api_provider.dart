@@ -16,7 +16,7 @@ class WeatherApiProvider {
   final Dio _dio = Dio();
 
   Future<WeatherResponse> fetchWeather(
-      double? latitude, double? longitude) async {
+      double? latitude, double? longitude,) async {
     try {
       final Uri uri = _buildUri(_apiWeatherEndpoint, latitude, longitude);
       final Response<Map<String, dynamic>> response =
@@ -27,14 +27,14 @@ class WeatherApiProvider {
         return WeatherResponse.withErrorCode(ApplicationError.apiError);
       }
     } catch (exc, stacktrace) {
-      Log.e("Exception occurred: $exc stack trace: ${stacktrace.toString()}");
+      Log.e("Exception occurred: $exc stack trace: $stacktrace");
 
       return WeatherResponse.withErrorCode(ApplicationError.connectionError);
     }
   }
 
   Future<WeatherForecastListResponse> fetchWeatherForecast(
-      double? latitude, double? longitude) async {
+      double? latitude, double? longitude,) async {
     try {
       final Uri uri =
           _buildUri(_apiWeatherForecastEndpoint, latitude, longitude);
@@ -44,12 +44,12 @@ class WeatherApiProvider {
         return WeatherForecastListResponse.fromJson(response.data!);
       } else {
         return WeatherForecastListResponse.withErrorCode(
-            ApplicationError.apiError);
+            ApplicationError.apiError,);
       }
     } catch (exc, stackTrace) {
       Log.e("Exception occurred: $exc $stackTrace");
       return WeatherForecastListResponse.withErrorCode(
-          ApplicationError.connectionError);
+          ApplicationError.connectionError,);
     }
   }
 

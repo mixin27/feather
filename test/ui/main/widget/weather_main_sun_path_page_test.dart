@@ -14,15 +14,15 @@ void main() {
 
     await tester.pumpWidget(TestHelper.wrapWidgetWithLocalizationApp(widget));
     expect(
-        find.byKey(const Key("weather_main_sun_path_widget")), findsOneWidget);
+        find.byKey(const Key("weather_main_sun_path_widget")), findsOneWidget,);
     expect(find.byKey(const Key("weather_main_sun_path_percentage")),
-        findsOneWidget);
+        findsOneWidget,);
     expect(find.byKey(const Key("weather_main_sun_path_countdown")),
-        findsOneWidget);
+        findsOneWidget,);
     expect(
-        find.byKey(const Key("weather_main_sun_path_sunrise")), findsOneWidget);
+        find.byKey(const Key("weather_main_sun_path_sunrise")), findsOneWidget,);
     expect(
-        find.byKey(const Key("weather_main_sun_path_sunset")), findsOneWidget);
+        find.byKey(const Key("weather_main_sun_path_sunset")), findsOneWidget,);
   });
 }
 

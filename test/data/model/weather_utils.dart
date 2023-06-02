@@ -36,7 +36,7 @@ class WeatherUtils {
   }
 
   static WeatherForecastListResponse getWeatherForecastListResponse(
-      {int id = 0}) {
+      {int id = 0,}) {
     return WeatherForecastListResponse([], City(id, ""));
   }
 }

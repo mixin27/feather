@@ -80,7 +80,7 @@ void main() {
 }
 
 SettingsScreenBloc buildSettingsScreenBloc(
-    {FakeStorageManager? fakeStorageManager}) {
+    {FakeStorageManager? fakeStorageManager,}) {
   return SettingsScreenBloc(
     ApplicationLocalRepository(
       fakeStorageManager ?? FakeStorageManager(),

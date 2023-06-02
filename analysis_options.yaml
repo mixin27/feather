@@ -1,8 +1,8 @@
 include: package:lint/analysis_options_package.yaml
 
 analyzer:
-  strong-mode:
-    implicit-dynamic: false
+  # strong-mode:
+  #   implicit-dynamic: false
 
 linter:
   rules:
@@ -15,6 +15,6 @@ linter:
     prefer_constructors_over_static_methods: false
     sort_unnamed_constructors_first: false
     sized_box_for_whitespace: false
-    invalid_dependency: false
+    # invalid_dependency: false
     sort_pub_dependencies: false
-    implicit-dynamic: false
+    # implicit-dynamic: false

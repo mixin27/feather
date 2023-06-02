@@ -16,7 +16,7 @@ void main() {
       (WidgetTester tester) async {
     final settingsScreenBloc = SettingsScreenBloc(ApplicationLocalRepository(
       FakeStorageManager(),
-    ));
+    ),);
 
     settingsScreenBloc.add(LoadSettingsScreenEvent());
 
@@ -39,10 +39,10 @@ void main() {
 
     expect(find.byKey(const Key("settings_screen_container")), findsOneWidget);
     expect(
-        find.byKey(const Key("settings_screen_refresh_timer")), findsOneWidget);
+        find.byKey(const Key("settings_screen_refresh_timer")), findsOneWidget,);
     expect(
-        find.byKey(const Key("settings_screen_units_picker")), findsOneWidget);
+        find.byKey(const Key("settings_screen_units_picker")), findsOneWidget,);
     expect(find.byKey(const Key("settings_screen_last_refresh_time")),
-        findsOneWidget);
+        findsOneWidget,);
   });
 }

@@ -1,10 +1,9 @@
 import 'package:feather/src/data/model/internal/chart_data.dart';
 import 'package:feather/src/data/model/internal/chart_line.dart';
 import 'package:feather/src/data/model/internal/point.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:feather/src/ui/widget/animated_state.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ChartWidget extends StatefulWidget {
   final ChartData? chartData;
@@ -51,7 +50,7 @@ class _ChartWidgetState extends AnimatedState<ChartWidget> {
           widget.chartData!.width,
           widget.chartData!.height,
           widget.chartData!.axes,
-          _fraction),
+          _fraction,),
     );
   }
 
@@ -61,15 +60,11 @@ class _ChartWidgetState extends AnimatedState<ChartWidget> {
       child: Text(
         AppLocalizations.of(context)!.chart_unavailable,
         textDirection: TextDirection.ltr,
-        style: Theme.of(context).textTheme.bodyText2,
+        style: Theme.of(context).textTheme.bodyMedium,
       ),
     );
   }
 
-  @override
-  void dispose() {
-    super.dispose();
-  }
 
   @override
   void onAnimatedValue(double value) {
@@ -81,7 +76,7 @@ class _ChartWidgetState extends AnimatedState<ChartWidget> {
 
 class _ChartPainter extends CustomPainter {
   _ChartPainter(this.points, this.pointLabels, this.width, this.height,
-      this.axes, this.fraction);
+      this.axes, this.fraction,);
 
   final List<Point>? points;
   final List<String>? pointLabels;
@@ -115,25 +110,25 @@ class _ChartPainter extends CustomPainter {
 
         final Offset endOffset = Offset(
             startPoint.x + diffX * lastLineFractionPercentage,
-            startPoint.y + diffY * lastLineFractionPercentage);
+            startPoint.y + diffY * lastLineFractionPercentage,);
         canvas.drawLine(startOffset, endOffset, paint);
         _drawText(canvas, textOffset, pointLabels![index + 1],
-            lastLineFractionPercentage, true);
+            lastLineFractionPercentage, true,);
       } else {
         canvas.drawLine(_getOffsetFromPoint(points![index]),
-            _getOffsetFromPoint(points![index + 1]), paint);
+            _getOffsetFromPoint(points![index + 1]), paint,);
         _drawText(canvas, textOffset, pointLabels![index], 1, true);
       }
     }
     if (fraction > 0.999) {
       final Offset textOffset = Offset(points![points!.length - 1].x - 5,
-          points![points!.length - 1].y - 15);
+          points![points!.length - 1].y - 15,);
       _drawText(canvas, textOffset, pointLabels![points!.length - 1], 1, true);
     }
   }
 
   void _drawText(Canvas canvas, Offset offset, String? text,
-      double alphaFraction, bool textShadow) {
+      double alphaFraction, bool textShadow,) {
     final TextStyle textStyle = _getTextStyle(alphaFraction, textShadow);
     final TextSpan textSpan = TextSpan(style: textStyle, text: text);
     final TextPainter textPainter =
@@ -177,7 +172,7 @@ class _ChartPainter extends CustomPainter {
     if (axes != null) {
       for (final ChartLine lineAxis in axes!) {
         canvas.drawLine(
-            lineAxis.lineStartOffset, lineAxis.lineEndOffset, axesPaint);
+            lineAxis.lineStartOffset, lineAxis.lineEndOffset, axesPaint,);
         _drawText(canvas, lineAxis.textOffset, lineAxis.label, 1, false);
       }
     }

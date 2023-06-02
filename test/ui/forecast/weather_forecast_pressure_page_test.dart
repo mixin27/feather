@@ -18,20 +18,20 @@ void main() {
     await tester.pumpWidget(
       TestHelper.wrapWidgetWithLocalizationApp(
         WeatherForecastPressurePage(
-            setupWeatherForecastHolder(), 300, 100, true),
+            setupWeatherForecastHolder(), 300, 100, true,),
       ),
     );
 
     expect(find.byKey(const Key("weather_forecast_base_page_icon")),
-        findsOneWidget);
+        findsOneWidget,);
     expect(find.byKey(const Key("weather_forecast_base_page_title")),
-        findsOneWidget);
+        findsOneWidget,);
     expect(find.byKey(const Key("weather_forecast_pressure_page_subtitle")),
-        findsOneWidget);
+        findsOneWidget,);
     expect(find.byKey(const Key("weather_forecast_pressure_page_bottom_row")),
-        findsOneWidget);
+        findsOneWidget,);
     expect(find.byKey(const Key("weather_forecast_base_page_title")),
-        findsOneWidget);
+        findsOneWidget,);
     expect(find.byKey(const Key("chart_widget_container")), findsOneWidget);
 
     final Text title = tester
@@ -39,7 +39,7 @@ void main() {
     expect(title.data, "Pressure");
 
     final RichText subtitle = tester.widget(
-        find.byKey(const Key("weather_forecast_pressure_page_subtitle")));
+        find.byKey(const Key("weather_forecast_pressure_page_subtitle")),);
     final TextSpan textSpan = subtitle.text as TextSpan;
     expect(textSpan.text == null, true);
     expect(textSpan.children!.length == 4, true);
@@ -50,7 +50,7 @@ void main() {
     expect(textSpan.children![3].toPlainText().contains("hPa"), true);
 
     final Row bottomRow = tester.widget(
-        find.byKey(const Key("weather_forecast_pressure_page_bottom_row")));
+        find.byKey(const Key("weather_forecast_pressure_page_bottom_row")),);
     expect(bottomRow.children.isEmpty, true);
   });
 }
@@ -68,7 +68,7 @@ WeatherForecastHolder setupWeatherForecastHolder() {
   final Rain snow = Rain(10);
 
   forecastList.add(WeatherForecastResponse(
-      mainWeatherData, list, null, wind, DateTime.now(), rain, snow));
+      mainWeatherData, list, null, wind, DateTime.now(), rain, snow,),);
 
   final System system = System(null, 0, 0);
   final City city = City(0, null);

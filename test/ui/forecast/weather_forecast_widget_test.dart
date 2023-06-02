@@ -26,9 +26,9 @@ void main() {
     );
     expect(find.byKey(const Key("weather_forecast_container")), findsOneWidget);
     expect(find.byKey(const Key("weather_forecast_location_name")),
-        findsOneWidget);
+        findsOneWidget,);
     expect(find.byKey(const Key("weather_forecast_date_formatted")),
-        findsOneWidget);
+        findsOneWidget,);
     expect(find.byKey(const Key("weather_forecast_swiper")), findsOneWidget);
   });
 }
@@ -46,7 +46,7 @@ WeatherForecastHolder setupWeatherForecastHolder() {
   final Rain snow = Rain(10);
 
   forecastList.add(WeatherForecastResponse(
-      mainWeatherData, list, null, wind, DateTime.now(), rain, snow));
+      mainWeatherData, list, null, wind, DateTime.now(), rain, snow,),);
 
   final System system = System(null, 0, 0);
   final City city = City(0, null);

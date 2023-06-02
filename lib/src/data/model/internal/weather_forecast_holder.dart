@@ -36,7 +36,7 @@ class WeatherForecastHolder {
   System? _system;
 
   WeatherForecastHolder(
-      List<WeatherForecastResponse> forecastList, City? city, System? system) {
+      List<WeatherForecastResponse> forecastList, City? city, System? system,) {
     _forecastList = forecastList;
     _temperatures = _getTemperaturesList();
 
@@ -150,9 +150,9 @@ class WeatherForecastHolder {
   }
 
   ChartData setupChartData(ChartDataType chartDataType, double width,
-      double height, bool isMetricUnit) {
+      double height, bool isMetricUnit,) {
     return ChartData(
-        this, forecastList!, chartDataType, width, height, isMetricUnit);
+        this, forecastList!, chartDataType, width, height, isMetricUnit,);
   }
 
   List<String> getWindDirectionList() {

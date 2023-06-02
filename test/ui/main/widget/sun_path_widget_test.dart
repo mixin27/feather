@@ -15,10 +15,13 @@ void main() {
 
     expect(find.byKey(const Key("sun_path_widget_sized_box")), findsOneWidget);
     expect(
-        find.byKey(const Key("sun_path_widget_custom_paint")), findsOneWidget);
+      find.byKey(const Key("sun_path_widget_custom_paint")),
+      findsOneWidget,
+    );
   });
 }
 
+// ignore: unreachable_from_main
 System setupSystem() {
   return System("", 0, 0);
 }

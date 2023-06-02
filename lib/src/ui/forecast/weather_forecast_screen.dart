@@ -1,13 +1,12 @@
 import 'package:feather/src/data/model/internal/overflow_menu_element.dart';
 import 'package:feather/src/data/model/internal/weather_forecast_holder.dart';
 import 'package:feather/src/ui/app/app_bloc.dart';
+import 'package:feather/src/ui/forecast/widget/weather_forecast_widget.dart';
 import 'package:feather/src/ui/navigation/bloc/navigation_bloc.dart';
 import 'package:feather/src/ui/navigation/bloc/navigation_event.dart';
 import 'package:feather/src/ui/widget/transparent_app_bar.dart';
-import 'package:feather/src/ui/forecast/widget/weather_forecast_widget.dart';
 import 'package:feather/src/ui/widget/widget_helper.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class WeatherForecastScreen extends StatefulWidget {
@@ -16,7 +15,7 @@ class WeatherForecastScreen extends StatefulWidget {
   const WeatherForecastScreen(this._holder, {Key? key}) : super(key: key);
 
   @override
-  _WeatherForecastScreenState createState() => _WeatherForecastScreenState();
+  State<WeatherForecastScreen> createState() => _WeatherForecastScreenState();
 }
 
 class _WeatherForecastScreenState extends State<WeatherForecastScreen> {
@@ -32,8 +31,9 @@ class _WeatherForecastScreenState extends State<WeatherForecastScreen> {
   @override
   Widget build(BuildContext context) {
     final LinearGradient gradient = WidgetHelper.getGradient(
-        sunriseTime: widget._holder.system!.sunrise,
-        sunsetTime: widget._holder.system!.sunset);
+      sunriseTime: widget._holder.system!.sunrise,
+      sunsetTime: widget._holder.system!.sunset,
+    );
     return Scaffold(
       body: Stack(
         children: <Widget>[
@@ -65,8 +65,9 @@ class _WeatherForecastScreenState extends State<WeatherForecastScreen> {
     List<Color> startGradientColors = [];
 
     final LinearGradient gradient = WidgetHelper.getGradient(
-        sunriseTime: widget._holder.system!.sunrise,
-        sunsetTime: widget._holder.system!.sunset);
+      sunriseTime: widget._holder.system!.sunrise,
+      sunsetTime: widget._holder.system!.sunset,
+    );
     startGradientColors = gradient.colors;
 
     if (value.key == const Key("menu_overflow_settings")) {

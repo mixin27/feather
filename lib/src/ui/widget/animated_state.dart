@@ -38,7 +38,7 @@ abstract class AnimatedState<T extends StatefulWidget> extends State<T>
   Animation<double> setupAnimation(
       {Curve curve = Curves.easeInOut,
       int duration = 2000,
-      bool noAnimation = false}) {
+      bool noAnimation = false,}) {
     controller ??= _getAnimationController(this, duration);
     controller!.forward();
     if (!noAnimation) {
@@ -49,9 +49,9 @@ abstract class AnimatedState<T extends StatefulWidget> extends State<T>
   }
 
   AnimationController _getAnimationController(
-      SingleTickerProviderStateMixin object, int duration) {
+      SingleTickerProviderStateMixin object, int duration,) {
     return AnimationController(
-        duration: Duration(milliseconds: duration), vsync: object);
+        duration: Duration(milliseconds: duration), vsync: object,);
   }
 
   Animation _getCurvedAnimation(AnimationController controller, Curve curve) {
@@ -59,7 +59,7 @@ abstract class AnimatedState<T extends StatefulWidget> extends State<T>
   }
 
   static Animation<double> _getTween(
-      double start, double? end, Animation animation) {
+      double start, double? end, Animation animation,) {
     return Tween(begin: start, end: end)
         .animate(animation as Animation<double>);
   }

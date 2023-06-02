@@ -1,6 +1,5 @@
 import 'package:feather/src/ui/widget/animated_state.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class AnimatedTextWidget extends StatefulWidget {
   final String? textBefore;
@@ -27,14 +26,10 @@ class _AnimatedTextWidgetState extends AnimatedState<AnimatedTextWidget> {
     return Text(
       "${widget.textBefore} ${_value.toStringAsFixed(0)}%",
       textDirection: TextDirection.ltr,
-      style: Theme.of(context).textTheme.headline6,
+      style: Theme.of(context).textTheme.titleLarge,
     );
   }
 
-  @override
-  void dispose() {
-    super.dispose();
-  }
 
   @override
   void onAnimatedValue(double value) {

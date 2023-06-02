@@ -39,11 +39,11 @@ void main() {
 
     expect(find.byKey(const Key("main_screen_overflow_menu")), findsOneWidget);
     expect(find.byKey(const Key("main_screen_weather_widget_container")),
-        findsOneWidget);
+        findsOneWidget,);
     expect(find.byKey(const Key("main_screen_weather_widget_city_name")),
-        findsOneWidget);
+        findsOneWidget,);
     expect(
-        find.byKey(const Key("main_screen_gradient_widget")), findsOneWidget);
+        find.byKey(const Key("main_screen_gradient_widget")), findsOneWidget,);
   });
 
   testWidgets("Main screen should display permission not granted widget",
@@ -76,9 +76,9 @@ void main() {
 
     expect(find.byKey(const Key("main_screen_overflow_menu")), findsOneWidget);
     expect(find.byKey(const Key("main_screen_permissions_not_granted_widget")),
-        findsOneWidget);
+        findsOneWidget,);
     expect(
-        find.byKey(const Key("main_screen_gradient_widget")), findsOneWidget);
+        find.byKey(const Key("main_screen_gradient_widget")), findsOneWidget,);
   });
 
   testWidgets("Main screen should display permission not granted widget",
@@ -111,9 +111,9 @@ void main() {
 
     expect(find.byKey(const Key("main_screen_overflow_menu")), findsOneWidget);
     expect(find.byKey(const Key("main_screen_permissions_not_granted_widget")),
-        findsOneWidget);
+        findsOneWidget,);
     expect(
-        find.byKey(const Key("main_screen_gradient_widget")), findsOneWidget);
+        find.byKey(const Key("main_screen_gradient_widget")), findsOneWidget,);
   });
 
   testWidgets(
@@ -145,10 +145,10 @@ void main() {
 
     expect(find.byKey(const Key("main_screen_overflow_menu")), findsOneWidget);
     expect(
-        find.byKey(const Key("main_screen_gradient_widget")), findsOneWidget);
+        find.byKey(const Key("main_screen_gradient_widget")), findsOneWidget,);
     expect(
         find.byKey(const Key("main_screen_location_service_disabled_widget")),
-        findsOneWidget);
+        findsOneWidget,);
   });
 
   testWidgets("Main screen should display failed to load weather data from API",
@@ -184,9 +184,9 @@ void main() {
 
     expect(find.byKey(const Key("main_screen_overflow_menu")), findsOneWidget);
     expect(
-        find.byKey(const Key("main_screen_gradient_widget")), findsOneWidget);
+        find.byKey(const Key("main_screen_gradient_widget")), findsOneWidget,);
     expect(find.byKey(const Key("main_screen_failed_to_load_data_widget")),
-        findsOneWidget);
+        findsOneWidget,);
   });
 
   testWidgets(
@@ -224,8 +224,8 @@ void main() {
 
     expect(find.byKey(const Key("main_screen_overflow_menu")), findsOneWidget);
     expect(
-        find.byKey(const Key("main_screen_gradient_widget")), findsOneWidget);
+        find.byKey(const Key("main_screen_gradient_widget")), findsOneWidget,);
     expect(find.byKey(const Key("main_screen_failed_to_load_data_widget")),
-        findsOneWidget);
+        findsOneWidget,);
   });
 }

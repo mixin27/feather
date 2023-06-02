@@ -21,7 +21,7 @@ void main() {
     expect(find.byKey(const Key("about_screen_logo")), findsOneWidget);
     expect(find.byKey(const Key("about_screen_app_name")), findsOneWidget);
     expect(find.byKey(const Key("about_screen_app_version_and_build")),
-        findsOneWidget);
+        findsOneWidget,);
     expect(find.byKey(const Key("about_screen_contributors")), findsOneWidget);
     expect(find.byKey(const Key("about_screen_credits")), findsOneWidget);
   });

@@ -84,7 +84,7 @@ class StorageManager {
     try {
       Log.d("Save refresh time: $lastRefreshTime");
       final result = await _storageProvider.setInt(
-          Ids.storageLastRefreshTimeKey, lastRefreshTime);
+          Ids.storageLastRefreshTimeKey, lastRefreshTime,);
       Log.d("Saved with result: $result");
       return result;
     } catch (exc, stackTrace) {
@@ -111,7 +111,7 @@ class StorageManager {
     try {
       Log.d("Store location: $geoPosition");
       final result = await _storageProvider.setString(
-          Ids.storageLocationKey, json.encode(geoPosition));
+          Ids.storageLocationKey, json.encode(geoPosition),);
       Log.d("Saved with result: $result");
       return result;
     } catch (exc, stackTrace) {
@@ -127,7 +127,7 @@ class StorageManager {
       Log.d("Returned user location: $jsonData");
       if (jsonData != null) {
         return GeoPosition.fromJson(
-            json.decode(jsonData) as Map<String, dynamic>);
+            json.decode(jsonData) as Map<String, dynamic>,);
       } else {
         return null;
       }
@@ -141,7 +141,7 @@ class StorageManager {
     try {
       Log.d("Store weather: ${json.encode(response)}");
       final result = await _storageProvider.setString(
-          Ids.storageWeatherKey, json.encode(response));
+          Ids.storageWeatherKey, json.encode(response),);
       Log.d("Saved with result: $result");
       return result;
     } catch (exc, stackTrace) {
@@ -157,7 +157,7 @@ class StorageManager {
       Log.d("Returned weather data: $jsonData");
       if (jsonData != null) {
         return WeatherResponse.fromJson(
-            jsonDecode(jsonData) as Map<String, dynamic>);
+            jsonDecode(jsonData) as Map<String, dynamic>,);
       } else {
         return null;
       }
@@ -171,7 +171,7 @@ class StorageManager {
     try {
       Log.d("Store weather forecast ${json.encode(response)}");
       final result = _storageProvider.setString(
-          Ids.storageWeatherForecastKey, json.encode(response));
+          Ids.storageWeatherForecastKey, json.encode(response),);
       Log.d("Saved with result: $result");
       return result;
     } catch (exc, stackTrace) {
@@ -187,7 +187,7 @@ class StorageManager {
       Log.d("Returned weather forecast data: $jsonData");
       if (jsonData != null) {
         return WeatherForecastListResponse.fromJson(
-            jsonDecode(jsonData) as Map<String, dynamic>);
+            jsonDecode(jsonData) as Map<String, dynamic>,);
       } else {
         return null;
       }

@@ -32,7 +32,7 @@ class SuccessLoadMainScreenState extends MainScreenState {
   final WeatherForecastListResponse weatherForecastListResponse;
 
   const SuccessLoadMainScreenState(
-      this.weatherResponse, this.weatherForecastListResponse);
+      this.weatherResponse, this.weatherForecastListResponse,);
 
   @override
   List<Object?> get props => [unit, weatherResponse];

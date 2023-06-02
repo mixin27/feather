@@ -1,13 +1,13 @@
 import 'package:feather/src/data/model/internal/overflow_menu_element.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class TransparentAppBar extends StatelessWidget {
   final bool withPopupMenu;
   final Function(PopupMenuElement value)? onPopupMenuClicked;
 
   const TransparentAppBar(
-      {Key? key, this.withPopupMenu = false, this.onPopupMenuClicked})
+      {Key? key, this.withPopupMenu = false, this.onPopupMenuClicked,})
       : super(key: key);
 
   @override
@@ -27,7 +27,7 @@ class TransparentAppBar extends StatelessWidget {
                 child: PopupMenuButton<PopupMenuElement>(
                   onSelected: (PopupMenuElement element) {
                     if (onPopupMenuClicked != null) {
-                      onPopupMenuClicked!(element);
+                      onPopupMenuClicked?.call(element);
                     }
                   },
                   icon: const Icon(
@@ -46,7 +46,7 @@ class TransparentAppBar extends StatelessWidget {
                       );
                     }).toList();
                   },
-                ))
+                ),)
         ],
         backgroundColor: Colors.transparent, //No more green
         elevation: 0.0, //Shadow gone
@@ -60,11 +60,11 @@ class TransparentAppBar extends StatelessWidget {
     menuList.add(PopupMenuElement(
       key: const Key("menu_overflow_settings"),
       title: applicationLocalization.settings,
-    ));
+    ),);
     menuList.add(PopupMenuElement(
       key: const Key("menu_overflow_about"),
       title: applicationLocalization.about,
-    ));
+    ),);
     return menuList;
   }
 }

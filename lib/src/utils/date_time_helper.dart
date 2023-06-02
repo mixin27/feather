@@ -1,17 +1,16 @@
 import 'package:intl/intl.dart';
 
-class DateTimeHelper{
+class DateTimeHelper {
   static const int dayAsMs = 86400000;
   static const int hoursAsMs = 3600000;
   static const int minutesAsMs = 60000;
   static const int secondsAsMs = 1000;
 
-
-  static String formatDateTime(DateTime dateTime){
+  static String formatDateTime(DateTime dateTime) {
     return DateFormat('dd/MM/yyyy').format(DateTime.now());
   }
 
-  static int getCurrentTime(){
+  static int getCurrentTime() {
     return DateTime.now().millisecondsSinceEpoch;
   }
 
@@ -21,7 +20,7 @@ class DateTimeHelper{
     return "$hourFormatted:$minuteFormatted";
   }
 
-  static String formatTimeUnit(int timeUnit){
+  static String formatTimeUnit(int timeUnit) {
     return timeUnit < 10 ? "0$timeUnit" : "$timeUnit";
   }
 
@@ -29,8 +28,8 @@ class DateTimeHelper{
     final int hours = (time / hoursAsMs).floor();
     final int minutes = ((time - hours * hoursAsMs) / minutesAsMs).floor();
     final int seconds =
-    ((time - hours * hoursAsMs - minutes * minutesAsMs) / secondsAsMs)
-        .floor();
+        ((time - hours * hoursAsMs - minutes * minutesAsMs) / secondsAsMs)
+            .floor();
     String text = "";
     if (hours > 0) {
       text += "${formatTimeUnit(hours)}h ";
@@ -43,5 +42,4 @@ class DateTimeHelper{
     }
     return text;
   }
-  
 }

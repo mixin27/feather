@@ -21,15 +21,15 @@ void main() {
     );
 
     expect(find.byKey(const Key("weather_forecast_base_page_icon")),
-        findsOneWidget);
+        findsOneWidget,);
     expect(find.byKey(const Key("weather_forecast_base_page_title")),
-        findsOneWidget);
+        findsOneWidget,);
     expect(find.byKey(const Key("weather_forecast_wind_page_subtitle")),
-        findsOneWidget);
+        findsOneWidget,);
     expect(find.byKey(const Key("weather_forecast_wind_page_bottom_row")),
-        findsOneWidget);
+        findsOneWidget,);
     expect(find.byKey(const Key("weather_forecast_base_page_title")),
-        findsOneWidget);
+        findsOneWidget,);
     expect(find.byKey(const Key("chart_widget_container")), findsOneWidget);
 
     final Text title = tester
@@ -69,7 +69,7 @@ WeatherForecastHolder setupWeatherForecastHolder() {
 
   forecastList.add(
     WeatherForecastResponse(
-        mainWeatherData, list, null, wind, DateTime.now(), rain, snow),
+        mainWeatherData, list, null, wind, DateTime.now(), rain, snow,),
   );
 
   final System system = System(null, 0, 0);

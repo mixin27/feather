@@ -7,7 +7,7 @@ class ChartLine {
   final Offset _lineEndOffset;
 
   ChartLine(this._label, this._textOffset, this._lineStartOffset,
-      this._lineEndOffset);
+      this._lineEndOffset,);
 
   Offset get lineEndOffset => _lineEndOffset;
 

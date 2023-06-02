@@ -14,7 +14,7 @@ class AnimatedGradientWidget extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _AnimatedGradientWidgetState createState() => _AnimatedGradientWidgetState();
+  State<AnimatedGradientWidget> createState() => _AnimatedGradientWidgetState();
 }
 
 class _AnimatedGradientWidgetState extends State<AnimatedGradientWidget> {
@@ -41,13 +41,13 @@ class _AnimatedGradientWidgetState extends State<AnimatedGradientWidget> {
   void initState() {
     super.initState();
     if (widget.startGradientColors.isNotEmpty) {
-      colorList.add( widget.startGradientColors[0]);
-      colorList.add( widget.startGradientColors[1]);
+      colorList.add(widget.startGradientColors[0]);
+      colorList.add(widget.startGradientColors[1]);
       topColor = widget.startGradientColors[0];
       bottomColor = widget.startGradientColors[1];
     }
 
-    _startTimer = Timer(const Duration(seconds: 1), (){
+    _startTimer = Timer(const Duration(seconds: 1), () {
       if (mounted) {
         setState(() {
           bottomColor = colorList[1];

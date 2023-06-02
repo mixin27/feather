@@ -48,10 +48,10 @@ void main() {
       );
       expect(
           find.byKey(
-              const Key("weather_forecast_thumbnail_list_widget_container")),
-          findsOneWidget);
+              const Key("weather_forecast_thumbnail_list_widget_container"),),
+          findsOneWidget,);
       expect(find.byKey(const Key("weather_forecast_thumbnail_widget")),
-          findsNWidgets(8));
+          findsNWidgets(8),);
     });
   });
 }
@@ -80,5 +80,5 @@ WeatherForecastResponse buildForecastResponseForDateTime(DateTime dateTime) {
   final Rain rain = Rain(0);
   final Rain snow = Rain(0);
   return WeatherForecastResponse(
-      mainWeatherData, list, clouds, wind, dateTime, rain, snow);
+      mainWeatherData, list, clouds, wind, dateTime, rain, snow,);
 }

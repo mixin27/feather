@@ -1,12 +1,11 @@
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:feather/src/resources/config/assets.dart';
 import 'package:feather/src/ui/about/bloc/about_screen_bloc.dart';
 import 'package:feather/src/ui/about/bloc/about_screen_state.dart';
 import 'package:feather/src/ui/widget/animated_gradient.dart';
 import 'package:feather/src/ui/widget/transparent_app_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:package_info/package_info.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -17,7 +16,7 @@ class AboutScreen extends StatefulWidget {
       : super(key: key);
 
   @override
-  _AboutScreenState createState() => _AboutScreenState();
+  State<AboutScreen> createState() => _AboutScreenState();
 }
 
 class _AboutScreenState extends State<AboutScreen> {
@@ -66,20 +65,26 @@ class _AboutScreenState extends State<AboutScreen> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           _buildLogoWidget(),
-          Text("feather",
-              key: const Key("about_screen_app_name"),
-              style: Theme.of(context).textTheme.headline6),
+          Text(
+            "feather",
+            key: const Key("about_screen_app_name"),
+            style: Theme.of(context).textTheme.titleLarge,
+          ),
           _buildVersionWidget(),
           const SizedBox(height: 20),
-          Text("${applicationLocalization.contributors}:",
-              key: const Key("about_screen_contributors"),
-              style: Theme.of(context).textTheme.subtitle2),
+          Text(
+            "${applicationLocalization.contributors}:",
+            key: const Key("about_screen_contributors"),
+            style: Theme.of(context).textTheme.titleSmall,
+          ),
           const SizedBox(height: 10),
           const Text("Jakub Homlala (jhomlala)"),
           const SizedBox(height: 20),
-          Text("${applicationLocalization.credits}:",
-              key: const Key("about_screen_credits"),
-              style: Theme.of(context).textTheme.subtitle2),
+          Text(
+            "${applicationLocalization.credits}:",
+            key: const Key("about_screen_credits"),
+            style: Theme.of(context).textTheme.titleSmall,
+          ),
           const SizedBox(height: 10),
           Text(applicationLocalization.weather_data),
           const SizedBox(height: 2),
@@ -111,9 +116,11 @@ class _AboutScreenState extends State<AboutScreen> {
       future: _getVersionAndBuildNumber(),
       builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
         if (snapshot.hasData) {
-          return Text(snapshot.data!,
-              key: const Key("about_screen_app_version_and_build"),
-              style: Theme.of(context).textTheme.subtitle2);
+          return Text(
+            snapshot.data!,
+            key: const Key("about_screen_app_version_and_build"),
+            style: Theme.of(context).textTheme.titleSmall,
+          );
         } else {
           return Container(
             key: const Key("about_screen_app_version_and_build"),
@@ -129,9 +136,9 @@ class _AboutScreenState extends State<AboutScreen> {
   }
 
   void _onLogoClicked() async {
-    const url = 'https://github.com/jhomlala/feather';
-    if (await canLaunch(url)) {
-      await launch(url);
+    final uri = Uri.parse('https://github.com/jhomlala/feather');
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri);
     }
   }
 }

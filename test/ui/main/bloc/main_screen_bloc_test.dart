@@ -43,7 +43,7 @@ void main() {
               FakeLocationProvider();
           fakeLocationProvider.locationEnabled = false;
           return buildMainScreenBloc(
-              fakeLocationProvider: fakeLocationProvider);
+              fakeLocationProvider: fakeLocationProvider,);
         },
         act: (bloc) => bloc.add(LocationCheckMainScreenEvent()),
         expect: () => [
@@ -62,7 +62,7 @@ void main() {
           fakeLocationProvider.requestedLocationPermission =
               LocationPermission.denied;
           return buildMainScreenBloc(
-              fakeLocationProvider: fakeLocationProvider);
+              fakeLocationProvider: fakeLocationProvider,);
         },
         act: (bloc) => bloc.add(LocationCheckMainScreenEvent()),
         expect: () => [
@@ -83,7 +83,7 @@ void main() {
           fakeLocationProvider.requestedLocationPermission =
               LocationPermission.denied;
           return buildMainScreenBloc(
-              fakeLocationProvider: fakeLocationProvider);
+              fakeLocationProvider: fakeLocationProvider,);
         },
         act: (bloc) => bloc.add(LocationCheckMainScreenEvent()),
         expect: () => [
@@ -102,7 +102,7 @@ void main() {
           fakeLocationProvider.requestedLocationPermission =
               LocationPermission.always;
           return buildMainScreenBloc(
-              fakeLocationProvider: fakeLocationProvider);
+              fakeLocationProvider: fakeLocationProvider,);
         },
         act: (bloc) => bloc.add(LocationCheckMainScreenEvent()),
         expect: () => [
@@ -122,7 +122,7 @@ void main() {
           fakeLocationProvider.requestedLocationPermission =
               LocationPermission.whileInUse;
           return buildMainScreenBloc(
-              fakeLocationProvider: fakeLocationProvider);
+              fakeLocationProvider: fakeLocationProvider,);
         },
         act: (bloc) => bloc.add(LocationCheckMainScreenEvent()),
         expect: () => [
@@ -199,7 +199,7 @@ void main() {
           isA<CheckingLocationMainScreenState>(),
           isA<LoadingMainScreenState>(),
           const FailedLoadMainScreenState(
-              ApplicationError.locationNotSelectedError)
+              ApplicationError.locationNotSelectedError,)
         ],
       );
     });
@@ -269,7 +269,7 @@ void main() {
           isA<CheckingLocationMainScreenState>(),
           isA<LoadingMainScreenState>(),
           const FailedLoadMainScreenState(
-              ApplicationError.locationNotSelectedError)
+              ApplicationError.locationNotSelectedError,)
         ],
       );
     });
@@ -294,7 +294,7 @@ void main() {
               .weatherResponse
               .toJson()
               .isNotEmpty,
-          true);
+          true,);
     });
 
     test("Weather forecast data is being loaded", () async {
@@ -315,7 +315,7 @@ void main() {
               .weatherForecastListResponse
               .toJson()
               .isNotEmpty,
-          true);
+          true,);
     });
   });
 }
@@ -329,6 +329,6 @@ MainScreenBloc buildMainScreenBloc({
       LocationManager(fakeLocationProvider ?? FakeLocationProvider()),
       WeatherLocalRepository(fakeStorageManger ?? FakeStorageManager()),
       WeatherRemoteRepository(
-          fakeWeatherApiProvider ?? FakeWeatherApiProvider()),
+          fakeWeatherApiProvider ?? FakeWeatherApiProvider(),),
       ApplicationLocalRepository(FakeStorageManager()),
     );

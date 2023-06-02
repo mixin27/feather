@@ -8,13 +8,8 @@ class AppBloc extends Bloc<AppEvent, AppState> {
   final ApplicationLocalRepository _applicationLocalRepository;
 
   AppBloc(this._applicationLocalRepository)
-      : super(const AppState(Unit.metric));
-
-  @override
-  Stream<AppState> mapEventToState(AppEvent event) async* {
-    if (event is LoadSettingsAppEvent) {
-      yield await _loadSettings();
-    }
+      : super(const AppState(Unit.metric)) {
+    on<LoadSettingsAppEvent>((event, emit) => _loadSettings);
   }
 
   Future<AppState> _loadSettings() async {

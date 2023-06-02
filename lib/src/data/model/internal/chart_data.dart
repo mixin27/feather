@@ -5,8 +5,8 @@ import 'package:feather/src/data/model/internal/chart_line.dart';
 import 'package:feather/src/data/model/internal/point.dart';
 import 'package:feather/src/data/model/internal/weather_forecast_holder.dart';
 import 'package:feather/src/data/model/remote/weather_forecast_response.dart';
-import 'package:feather/src/resources/config/dimensions.dart';
 import 'package:feather/src/data/repository/local/weather_helper.dart';
+import 'package:feather/src/resources/config/dimensions.dart';
 
 class ChartData {
   List<Point>? _points;
@@ -21,7 +21,7 @@ class ChartData {
       ChartDataType type,
       double width,
       double height,
-      bool isMetricUnits) {
+      bool isMetricUnits,) {
     setupChartData(holder, forecastList, type, width, height, isMetricUnits);
   }
 
@@ -31,7 +31,7 @@ class ChartData {
       ChartDataType chartDataType,
       double width,
       double height,
-      bool isMetricUnits) {
+      bool isMetricUnits,) {
     final List<double> values =
         _getChartValues(holder, chartDataType, isMetricUnits)!;
     final double? averageValue =
@@ -47,7 +47,7 @@ class ChartData {
   }
 
   List<double>? _getChartValues(WeatherForecastHolder holder,
-      ChartDataType chartDataType, bool isMetricUnits) {
+      ChartDataType chartDataType, bool isMetricUnits,) {
     List<double>? dataSet;
     switch (chartDataType) {
       case ChartDataType.temperature:
@@ -64,12 +64,12 @@ class ChartData {
           dataSet = dataSet!
               .map((value) =>
                   WeatherHelper.convertMetersPerSecondToKilometersPerHour(
-                      value))
+                      value,),)
               .toList();
         } else {
           dataSet = dataSet!
               .map((value) =>
-                  WeatherHelper.convertMetersPerSecondToMilesPerHour(value))
+                  WeatherHelper.convertMetersPerSecondToMilesPerHour(value),)
               .toList();
         }
         break;
@@ -84,7 +84,7 @@ class ChartData {
   }
 
   double? _getChartAverageValue(WeatherForecastHolder holder,
-      ChartDataType chartDataType, bool isMetricUnits) {
+      ChartDataType chartDataType, bool isMetricUnits,) {
     double? averageValue;
     switch (chartDataType) {
       case ChartDataType.temperature:
@@ -99,7 +99,7 @@ class ChartData {
         if (isMetricUnits) {
           averageValue =
               WeatherHelper.convertMetersPerSecondToKilometersPerHour(
-                  averageValue);
+                  averageValue,);
         } else {
           averageValue =
               WeatherHelper.convertMetersPerSecondToMilesPerHour(averageValue);
@@ -116,7 +116,7 @@ class ChartData {
   }
 
   List<Point> _getPoints(
-      List<double> values, double? averageValue, double width, double height) {
+      List<double> values, double? averageValue, double width, double height,) {
     final List<Point> points = [];
     final double halfHeight = (height - Dimensions.chartPadding) / 2;
     final double widthStep = width / (values.length - 1);
@@ -138,7 +138,7 @@ class ChartData {
   }
 
   List<double> _getAverageDifferenceValues(
-      List<double> values, double? averageValue) {
+      List<double> values, double? averageValue,) {
     final List<double> calculatedValues = [];
     for (final double value in values) {
       calculatedValues.add(value - averageValue!);
@@ -171,13 +171,13 @@ class ChartData {
   }
 
   List<ChartLine> _getAxes(List<Point> points, List<DateTime> dateTimes,
-      double height, double width, String? mainAxisText) {
+      double height, double width, String? mainAxisText,) {
     final List<ChartLine> list = [];
     list.add(ChartLine(
         mainAxisText,
         Offset(-25, height / 2 - 15),
         Offset(-5, (height - Dimensions.chartPadding) / 2),
-        Offset(width + 5, (height - Dimensions.chartPadding) / 2)));
+        Offset(width + 5, (height - Dimensions.chartPadding) / 2),),);
 
     for (int index = 0; index < points.length; index++) {
       final Point point = points[index];
@@ -186,7 +186,7 @@ class ChartData {
           _getPointAxisLabel(dateTime),
           Offset(point.x - 10, height - 10),
           Offset(point.x, 0),
-          Offset(point.x, height - 10)));
+          Offset(point.x, height - 10),),);
     }
     return list;
   }
@@ -195,15 +195,15 @@ class ChartData {
     final int hour = dateTime.hour;
     String hourText = "";
     if (hour < 10) {
-      hourText = "0${hour.toString()}";
+      hourText = "0$hour";
     } else {
       hourText = hour.toString();
     }
-    return "${hourText.toString()}:00";
+    return "$hourText:00";
   }
 
   String? _getMainAxisText(
-      ChartDataType chartDataType, double? averageValue, bool isMetricUnits) {
+      ChartDataType chartDataType, double? averageValue, bool isMetricUnits,) {
     String? text;
     switch (chartDataType) {
       case ChartDataType.temperature:

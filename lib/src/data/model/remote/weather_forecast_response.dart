@@ -14,12 +14,12 @@ class WeatherForecastResponse {
   final Rain? snow;
 
   WeatherForecastResponse(this.mainWeatherData, this.overallWeatherData,
-      this.clouds, this.wind, this.dateTime, this.rain, this.snow);
+      this.clouds, this.wind, this.dateTime, this.rain, this.snow,);
 
   WeatherForecastResponse.fromJson(Map<String, dynamic> json)
       : overallWeatherData = (json["weather"] as List)
             .map((dynamic data) =>
-                OverallWeatherData.fromJson(data as Map<String, dynamic>))
+                OverallWeatherData.fromJson(data as Map<String, dynamic>),)
             .toList(),
         mainWeatherData =
             MainWeatherData.fromJson(json["main"] as Map<String, dynamic>),

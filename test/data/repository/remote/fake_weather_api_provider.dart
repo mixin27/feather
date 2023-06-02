@@ -11,7 +11,7 @@ class FakeWeatherApiProvider extends WeatherApiProvider {
 
   @override
   Future<WeatherResponse> fetchWeather(
-      double? latitude, double? longitude) async {
+      double? latitude, double? longitude,) async {
     if (_weatherError != null) {
       return WeatherResponse.withErrorCode(_weatherError!);
     }
@@ -20,7 +20,7 @@ class FakeWeatherApiProvider extends WeatherApiProvider {
 
   @override
   Future<WeatherForecastListResponse> fetchWeatherForecast(
-      double? latitude, double? longitude) async {
+      double? latitude, double? longitude,) async {
     if (_weatherForecastError != null) {
       return WeatherForecastListResponse.withErrorCode(_weatherForecastError!);
     }

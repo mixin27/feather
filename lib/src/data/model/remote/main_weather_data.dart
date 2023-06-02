@@ -10,7 +10,7 @@ class MainWeatherData {
   final double pressureGroundLevel;
 
   MainWeatherData(this.temp, this.pressure, this.humidity, this.tempMin,
-      this.tempMax, this.pressureSeaLevel, this.pressureGroundLevel);
+      this.tempMax, this.pressureSeaLevel, this.pressureGroundLevel,);
 
   MainWeatherData.fromJson(Map<String, dynamic> json)
       : temp = TypesHelper.toDouble(json["temp"] as num?),

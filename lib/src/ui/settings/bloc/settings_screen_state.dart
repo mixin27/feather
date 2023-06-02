@@ -18,13 +18,13 @@ class LoadedSettingsScreenState extends SettingsScreenState {
   final int lastRefreshTime;
 
   const LoadedSettingsScreenState(
-      this.unit, this.refreshTime, this.lastRefreshTime);
+      this.unit, this.refreshTime, this.lastRefreshTime,);
 
   @override
   List<Object> get props => [unit, refreshTime, lastRefreshTime];
 
   LoadedSettingsScreenState copyWith(
-      {Unit? unit, int? refreshTime, int? lastRefreshTime}) {
+      {Unit? unit, int? refreshTime, int? lastRefreshTime,}) {
     return LoadedSettingsScreenState(
       unit ?? this.unit,
       refreshTime ?? this.refreshTime,

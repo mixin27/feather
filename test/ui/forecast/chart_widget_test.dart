@@ -16,7 +16,7 @@ import '../../test_helper.dart';
 void main() {
   testWidgets("Chart widget should display chart", (WidgetTester tester) async {
     await tester.pumpWidget(TestHelper.wrapWidgetWithLocalizationApp(
-        ChartWidget(chartData: setupChartData())));
+        ChartWidget(chartData: setupChartData()),),);
 
     expect(find.byKey(const Key("chart_widget_container")), findsOneWidget);
     expect(find.byKey(const Key("chart_widget_custom_paint")), findsOneWidget);
@@ -72,5 +72,5 @@ WeatherForecastResponse buildForecastResponseForDateTime(DateTime dateTime) {
   final Rain rain = Rain(0);
   final Rain snow = Rain(0);
   return WeatherForecastResponse(
-      mainWeatherData, list, null, wind, dateTime, rain, snow);
+      mainWeatherData, list, null, wind, dateTime, rain, snow,);
 }

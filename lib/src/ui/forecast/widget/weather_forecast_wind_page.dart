@@ -1,12 +1,11 @@
 import 'package:feather/src/data/model/internal/chart_data.dart';
 import 'package:feather/src/data/model/internal/point.dart';
 import 'package:feather/src/data/model/internal/weather_forecast_holder.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:feather/src/resources/config/assets.dart';
 import 'package:feather/src/data/repository/local/weather_helper.dart';
+import 'package:feather/src/resources/config/assets.dart';
 import 'package:feather/src/ui/forecast/widget/weather_forecast_base_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class WeatherForecastWindPage extends WeatherForecastBasePage {
   const WeatherForecastWindPage(
@@ -36,7 +35,7 @@ class WeatherForecastWindPage extends WeatherForecastBasePage {
             child: Center(
               child: Text(direction,
                   textDirection: TextDirection.ltr,
-                  style: Theme.of(context).textTheme.bodyText1),
+                  style: Theme.of(context).textTheme.bodyLarge,),
             ),
           ),
         );
@@ -82,15 +81,15 @@ class WeatherForecastWindPage extends WeatherForecastBasePage {
       textDirection: TextDirection.ltr,
       text: TextSpan(
         children: [
-          TextSpan(text: 'min ', style: Theme.of(context).textTheme.bodyText1),
+          TextSpan(text: 'min ', style: Theme.of(context).textTheme.bodyLarge),
           TextSpan(
               text: WeatherHelper.formatWind(minWind, isMetricUnits),
-              style: Theme.of(context).textTheme.subtitle2),
+              style: Theme.of(context).textTheme.titleSmall,),
           TextSpan(
-              text: '   max ', style: Theme.of(context).textTheme.bodyText1),
+              text: '   max ', style: Theme.of(context).textTheme.bodyLarge,),
           TextSpan(
               text: WeatherHelper.formatWind(maxWind, isMetricUnits),
-              style: Theme.of(context).textTheme.subtitle2)
+              style: Theme.of(context).textTheme.titleSmall,)
         ],
       ),
     );

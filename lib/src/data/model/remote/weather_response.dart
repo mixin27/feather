@@ -37,7 +37,7 @@ class WeatherResponse {
         system = System.fromJson(json["sys"] as Map<String, dynamic>),
         overallWeatherData = (json["weather"] as List)
             .map((dynamic data) =>
-                OverallWeatherData.fromJson(data as Map<String, dynamic>))
+                OverallWeatherData.fromJson(data as Map<String, dynamic>),)
             .toList(),
         mainWeatherData =
             MainWeatherData.fromJson(json["main"] as Map<String, dynamic>),

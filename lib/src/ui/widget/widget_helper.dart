@@ -38,40 +38,40 @@ class WidgetHelper {
   static LinearGradient getNightGradient(double percentage) {
     if (percentage <= 0.1) {
       return buildGradient(ApplicationColors.dawnDuskStartColor,
-          ApplicationColors.dawnDuskEndColor);
+          ApplicationColors.dawnDuskEndColor,);
     } else if (percentage <= 0.2) {
       return buildGradient(ApplicationColors.twilightStartColor,
-          ApplicationColors.twilightEndColor);
+          ApplicationColors.twilightEndColor,);
     } else if (percentage <= 0.6) {
       return buildGradient(
-          ApplicationColors.nightStartColor, ApplicationColors.nightEndColor);
+          ApplicationColors.nightStartColor, ApplicationColors.nightEndColor,);
     } else {
       return buildGradient(ApplicationColors.midnightStartColor,
-          ApplicationColors.midnightEndColor);
+          ApplicationColors.midnightEndColor,);
     }
   }
 
   static LinearGradient getDayGradient(double percentage) {
     if (percentage <= 0.1 || percentage >= 0.9) {
       return buildGradient(ApplicationColors.dawnDuskStartColor,
-          ApplicationColors.dawnDuskEndColor);
+          ApplicationColors.dawnDuskEndColor,);
     } else if (percentage <= 0.2 || percentage >= 0.8) {
       return buildGradient(ApplicationColors.morningEveStartColor,
-          ApplicationColors.morningEveEndColor);
+          ApplicationColors.morningEveEndColor,);
     } else if (percentage <= 0.4 || percentage >= 0.6) {
       return buildGradient(
-          ApplicationColors.dayStartColor, ApplicationColors.dayEndColor);
+          ApplicationColors.dayStartColor, ApplicationColors.dayEndColor,);
     } else {
       return buildGradient(
-          ApplicationColors.middayStartColor, ApplicationColors.middayEndColor);
+          ApplicationColors.middayStartColor, ApplicationColors.middayEndColor,);
     }
   }
 
   static LinearGradient getGradient(
-      {int? sunriseTime = 0, int? sunsetTime = 0}) {
+      {int? sunriseTime = 0, int? sunsetTime = 0,}) {
     if (sunriseTime == 0 && sunsetTime == 0) {
       return buildGradient(ApplicationColors.midnightStartColor,
-          ApplicationColors.midnightEndColor);
+          ApplicationColors.midnightEndColor,);
     } else {
       return buildGradientBasedOnDayCycle(sunriseTime!, sunsetTime!);
     }

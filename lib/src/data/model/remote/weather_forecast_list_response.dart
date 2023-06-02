@@ -12,7 +12,7 @@ class WeatherForecastListResponse {
   WeatherForecastListResponse.fromJson(Map<String, dynamic> json)
       : list = (json["list"] as List)
             .map((dynamic data) =>
-                WeatherForecastResponse.fromJson(data as Map<String, dynamic>))
+                WeatherForecastResponse.fromJson(data as Map<String, dynamic>),)
             .toList(),
         city = City.fromJson(json["city"] as Map<String, dynamic>);
 

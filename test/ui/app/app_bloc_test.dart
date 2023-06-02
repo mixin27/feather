@@ -9,46 +9,46 @@ import 'package:flutter_test/flutter_test.dart';
 import '../../data/repository/local/fake_storage_manager.dart';
 
 void main() {
-  late FakeStorageManager _fakeStorageManager;
-  late AppBloc _appBloc;
+  late FakeStorageManager fakeStorageManager;
+  late AppBloc appBloc;
 
   setUpAll(() {
-    _fakeStorageManager = FakeStorageManager();
-    _appBloc = buildAppBloc(fakeStorageManager: _fakeStorageManager);
+    fakeStorageManager = FakeStorageManager();
+    appBloc = buildAppBloc(fakeStorageManager: fakeStorageManager);
   });
 
   group("Initial unit settings", () {
     test("Initial state has metric unit", () {
-      expect(_appBloc.state.unit, Unit.metric);
+      expect(appBloc.state.unit, Unit.metric);
     });
   });
 
   group("Is metric units returns correct flag", () {
     test("Returns false for imperial unit", () async {
-      _fakeStorageManager.saveUnit(Unit.imperial);
-      _appBloc.add(LoadSettingsAppEvent());
-      await expectLater(_appBloc.stream,
-          emitsInOrder(<AppState>[const AppState(Unit.imperial)]));
-      expect(_appBloc.isMetricUnits(), equals(false));
+      fakeStorageManager.saveUnit(Unit.imperial);
+      appBloc.add(LoadSettingsAppEvent());
+      await expectLater(appBloc.stream,
+          emitsInOrder(<AppState>[const AppState(Unit.imperial)]),);
+      expect(appBloc.isMetricUnits(), equals(false));
     });
 
     test("Returns true for metric unit", () async {
-      _fakeStorageManager.saveUnit(Unit.metric);
-      _appBloc.add(LoadSettingsAppEvent());
-      await expectLater(_appBloc.stream,
-          emitsInOrder(<AppState>[const AppState(Unit.metric)]));
-      expect(_appBloc.isMetricUnits(), equals(true));
+      fakeStorageManager.saveUnit(Unit.metric);
+      appBloc.add(LoadSettingsAppEvent());
+      await expectLater(appBloc.stream,
+          emitsInOrder(<AppState>[const AppState(Unit.metric)]),);
+      expect(appBloc.isMetricUnits(), equals(true));
     });
   });
 
   group("Updated bloc state", () {
     setUp(() {
-      _fakeStorageManager.saveUnit(Unit.imperial);
+      fakeStorageManager.saveUnit(Unit.imperial);
     });
 
     blocTest<AppBloc, AppState>(
       "Load app settings updates unit",
-      build: () => _appBloc,
+      build: () => appBloc,
       act: (AppBloc bloc) => bloc.add(
         LoadSettingsAppEvent(),
       ),

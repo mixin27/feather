@@ -21,7 +21,7 @@ void main() {
   test("Should navigate to forecast screen", () async {
     navigationBloc.add(ForecastScreenNavigationEvent(
       WeatherForecastHolder.empty(),
-    ));
+    ),);
 
     await expectLater(
       navigationBloc.stream,
@@ -78,7 +78,7 @@ void main() {
 }
 
 NavigationBloc buildNavigationBloc(
-        {FakeNavigationProvider? fakeNavigationProvider}) =>
+        {FakeNavigationProvider? fakeNavigationProvider,}) =>
     NavigationBloc(
       fakeNavigationProvider ?? FakeNavigationProvider(),
       GlobalKey(),

@@ -14,7 +14,7 @@ class WeatherForecastThumbnailListWidget extends StatefulWidget {
   final WeatherForecastListResponse? forecastListResponse;
 
   const WeatherForecastThumbnailListWidget(
-      {Key? key, this.system, this.forecastListResponse})
+      {Key? key, this.system, this.forecastListResponse,})
       : super(key: key);
 
   @override
@@ -50,7 +50,7 @@ class WeatherForecastThumbnailListWidgetState
   }
 
   Widget buildForecastWeatherContainer(
-      WeatherForecastListResponse forecastListResponse) {
+      WeatherForecastListResponse forecastListResponse,) {
     final List<WeatherForecastResponse> forecastList =
         forecastListResponse.list!;
     final map = WeatherHelper.getMapForecastsForSameDay(forecastList);
@@ -64,13 +64,13 @@ class WeatherForecastThumbnailListWidgetState
 
   List<Widget> buildForecastWeatherWidgets(
       Map<String, List<WeatherForecastResponse>> map,
-      WeatherForecastListResponse? data) {
+      WeatherForecastListResponse? data,) {
     final List<Widget> forecastWidgets = [];
     map.forEach((key, value) {
       forecastWidgets.add(WeatherForecastThumbnailWidget(
         WeatherForecastHolder(value, data!.city, widget.system),
         _appBloc.isMetricUnits(),
-      ));
+      ),);
     });
     return forecastWidgets;
   }

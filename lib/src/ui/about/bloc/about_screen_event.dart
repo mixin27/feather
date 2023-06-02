@@ -4,4 +4,3 @@ class AboutScreenEvent extends Equatable {
   @override
   List<Object?> get props => [];
 }
-

@@ -2,7 +2,6 @@ import 'package:feather/src/data/model/internal/chart_data.dart';
 import 'package:feather/src/data/model/internal/weather_forecast_holder.dart';
 import 'package:feather/src/ui/forecast/widget/chart_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 abstract class WeatherForecastBasePage extends StatelessWidget {
   final WeatherForecastHolder? holder;
@@ -31,7 +30,7 @@ abstract class WeatherForecastBasePage extends StatelessWidget {
           const SizedBox(height: 40),
           ChartWidget(
               key: const Key("weather_forecast_base_page_chart"),
-              chartData: chartData),
+              chartData: chartData,),
           const SizedBox(height: 10),
           getBottomRowWidget(context)
         ],
@@ -52,7 +51,7 @@ abstract class WeatherForecastBasePage extends StatelessWidget {
     return Text(getTitleText(context)!,
         key: const Key("weather_forecast_base_page_title"),
         textDirection: TextDirection.ltr,
-        style: Theme.of(context).textTheme.subtitle2);
+        style: Theme.of(context).textTheme.titleSmall,);
   }
 
   String getIcon();

@@ -18,39 +18,39 @@ void main() {
   LinearGradient getNightGradient(double percentage) {
     if (percentage <= 0.1) {
       return buildGradient(ApplicationColors.dawnDuskStartColor,
-          ApplicationColors.dawnDuskEndColor);
+          ApplicationColors.dawnDuskEndColor,);
     } else if (percentage <= 0.2) {
       return buildGradient(ApplicationColors.twilightStartColor,
-          ApplicationColors.twilightEndColor);
+          ApplicationColors.twilightEndColor,);
     } else if (percentage <= 0.6) {
       return buildGradient(
-          ApplicationColors.nightStartColor, ApplicationColors.nightEndColor);
+          ApplicationColors.nightStartColor, ApplicationColors.nightEndColor,);
     } else {
       return buildGradient(ApplicationColors.midnightStartColor,
-          ApplicationColors.midnightEndColor);
+          ApplicationColors.midnightEndColor,);
     }
   }
 
   LinearGradient getDayGradient(double percentage) {
     if (percentage <= 0.1 || percentage >= 0.9) {
       return buildGradient(ApplicationColors.dawnDuskStartColor,
-          ApplicationColors.dawnDuskEndColor);
+          ApplicationColors.dawnDuskEndColor,);
     } else if (percentage <= 0.2 || percentage >= 0.8) {
       return buildGradient(ApplicationColors.morningEveStartColor,
-          ApplicationColors.morningEveEndColor);
+          ApplicationColors.morningEveEndColor,);
     } else if (percentage <= 0.4 || percentage >= 0.6) {
       return buildGradient(
-          ApplicationColors.dayStartColor, ApplicationColors.dayEndColor);
+          ApplicationColors.dayStartColor, ApplicationColors.dayEndColor,);
     } else {
       return buildGradient(
-          ApplicationColors.middayStartColor, ApplicationColors.middayEndColor);
+          ApplicationColors.middayStartColor, ApplicationColors.middayEndColor,);
     }
   }
 
   LinearGradient testGradientCycle(int testHour, int testMinutes) {
     final DateTime testDate = DateTime.now();
     final int testMs = DateTime(
-            testDate.year, testDate.month, testDate.day, testHour, testMinutes)
+            testDate.year, testDate.month, testDate.day, testHour, testMinutes,)
         .millisecondsSinceEpoch;
     // Test sunrise is at 08:00
     final int sunriseMs =
@@ -66,7 +66,7 @@ void main() {
           DateTime(testDate.year, testDate.month, testDate.day)
               .millisecondsSinceEpoch;
       return getNightGradient(
-          (sunriseMs - testMs) / (sunriseMs - lastMidnight));
+          (sunriseMs - testMs) / (sunriseMs - lastMidnight),);
     } else if (testMs > sunsetMs) {
       final int nextMidnight =
           DateTime(testDate.year, testDate.month, testDate.day + 1)
@@ -82,7 +82,7 @@ void main() {
     expect(
         testGradientCycle(0, 0),
         buildGradient(ApplicationColors.midnightStartColor,
-            ApplicationColors.midnightEndColor));
+            ApplicationColors.midnightEndColor,),);
   });
 
   test('testing night before sunrise gradient', () {
@@ -90,7 +90,7 @@ void main() {
     expect(
         testGradientCycle(4, 0),
         buildGradient(ApplicationColors.nightStartColor,
-            ApplicationColors.nightEndColor));
+            ApplicationColors.nightEndColor,),);
   });
 
   test('testing twilight before sunrise gradient', () {
@@ -98,7 +98,7 @@ void main() {
     expect(
         testGradientCycle(7, 0),
         buildGradient(ApplicationColors.twilightStartColor,
-            ApplicationColors.twilightEndColor));
+            ApplicationColors.twilightEndColor,),);
   });
 
   test('testing dawn before sunrise gradient', () {
@@ -106,7 +106,7 @@ void main() {
     expect(
         testGradientCycle(7, 30),
         buildGradient(ApplicationColors.dawnDuskStartColor,
-            ApplicationColors.dawnDuskEndColor));
+            ApplicationColors.dawnDuskEndColor,),);
   });
 
   test('testing dawn after sunrise gradient', () {
@@ -114,7 +114,7 @@ void main() {
     expect(
         testGradientCycle(8, 30),
         buildGradient(ApplicationColors.dawnDuskStartColor,
-            ApplicationColors.dawnDuskEndColor));
+            ApplicationColors.dawnDuskEndColor,),);
   });
 
   test('testing morning after sunrise gradient', () {
@@ -122,7 +122,7 @@ void main() {
     expect(
         testGradientCycle(10, 0),
         buildGradient(ApplicationColors.morningEveStartColor,
-            ApplicationColors.morningEveEndColor));
+            ApplicationColors.morningEveEndColor,),);
   });
 
   test('testing day before midday gradient', () {
@@ -130,7 +130,7 @@ void main() {
     expect(
         testGradientCycle(11, 0),
         buildGradient(
-            ApplicationColors.dayStartColor, ApplicationColors.dayEndColor));
+            ApplicationColors.dayStartColor, ApplicationColors.dayEndColor,),);
   });
 
   test('testing midday gradient', () {
@@ -138,7 +138,7 @@ void main() {
     expect(
         testGradientCycle(13, 0),
         buildGradient(ApplicationColors.middayStartColor,
-            ApplicationColors.middayEndColor));
+            ApplicationColors.middayEndColor,),);
   });
 
   test('testing day after midday gradient', () {
@@ -146,7 +146,7 @@ void main() {
     expect(
         testGradientCycle(14, 0),
         buildGradient(
-            ApplicationColors.dayStartColor, ApplicationColors.dayEndColor));
+            ApplicationColors.dayStartColor, ApplicationColors.dayEndColor,),);
   });
 
   test('testing evening before sunset gradient', () {
@@ -154,7 +154,7 @@ void main() {
     expect(
         testGradientCycle(16, 30),
         buildGradient(ApplicationColors.morningEveStartColor,
-            ApplicationColors.morningEveEndColor));
+            ApplicationColors.morningEveEndColor,),);
   });
 
   test('testing dusk before sunset gradient', () {
@@ -162,7 +162,7 @@ void main() {
     expect(
         testGradientCycle(17, 30),
         buildGradient(ApplicationColors.dawnDuskStartColor,
-            ApplicationColors.dawnDuskEndColor));
+            ApplicationColors.dawnDuskEndColor,),);
   });
 
   test('testing dusk after sunset gradient', () {
@@ -170,7 +170,7 @@ void main() {
     expect(
         testGradientCycle(18, 30),
         buildGradient(ApplicationColors.dawnDuskStartColor,
-            ApplicationColors.dawnDuskEndColor));
+            ApplicationColors.dawnDuskEndColor,),);
   });
 
   test('testing twilight after sunset gradient', () {
@@ -178,7 +178,7 @@ void main() {
     expect(
         testGradientCycle(19, 0),
         buildGradient(ApplicationColors.twilightStartColor,
-            ApplicationColors.twilightEndColor));
+            ApplicationColors.twilightEndColor,),);
   });
 
   test('testing night after sunset gradient', () {
@@ -186,7 +186,7 @@ void main() {
     expect(
         testGradientCycle(20, 0),
         buildGradient(ApplicationColors.nightStartColor,
-            ApplicationColors.nightEndColor));
+            ApplicationColors.nightEndColor,),);
   });
 
   test('testing midnight after sunset gradient', () {
@@ -194,6 +194,6 @@ void main() {
     expect(
         testGradientCycle(23, 0),
         buildGradient(ApplicationColors.midnightStartColor,
-            ApplicationColors.midnightEndColor));
+            ApplicationColors.midnightEndColor,),);
   });
 }
